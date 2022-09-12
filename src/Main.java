@@ -30,15 +30,15 @@ public class Main {
                 .collect(Collectors.toList());
 
         //3
-        Map<String, List<Person>> collect3 = person.stream()
-                .filter(x -> x.getSex() == Sex.MAN)
-                .filter(x -> x.getAge() >= 18)
-                .filter(x -> x.getAge() <= 65)
-                .filter(x -> x.getSex() == Sex.WOMAN)
-                .filter(x -> x.getAge() <= 60)
+                Collection<Person> collect3 = person.stream()
                 .filter(x -> x.getEducation() == Education.HIGHER)
+                .filter(x -> x.getSex() == Sex.MAN ? x.getAge() >=18 && x.getAge() <=65
+                        : x.getAge() >=18 && x.getAge() <= 60)
                 .sorted(Comparator.comparing(Person::getFamily))
-                .collect(Collectors.groupingBy(Person::getFamily, Collectors.toList()));
+                .collect(Collectors.toList());
 
+
+
+System.out.println(collect3);
     }
 }
